@@ -1,5 +1,5 @@
-// well... I think it would work but the Eloquent Code sandbox throws:
-// InternalError: too much recursion
+// recursiveRobot always takes the shortest route possible
+// average 10.8 turns
 
 function recursiveRobot(state, memory) {
   if (memory.length == 0) {
@@ -11,11 +11,11 @@ function recursiveRobot(state, memory) {
 }
 
 
-// finds the shortest route by trying all node possibilities
+// finds the shortest route by trying all possibilities
 function recursiveSearch(stateArg) {
   // end of route is reached
   if (stateArg.parcels.length == 0) {
-    return route;
+    return [];
   }
 
   let parcels = stateArg.parcels;
@@ -28,10 +28,10 @@ function recursiveSearch(stateArg) {
 
     if (parcel.place != place) {
       // make route to parcel location
-      let tempRoute = findRoute(roadGraph, place, parcel.place);
+      tempRoute = findRoute(roadGraph, place, parcel.place);
     } else {
       // parcel at robot: make route to parcel destination
-      let tempRoute = findRoute(roadGraph, place, parcel.address);
+      tempRoute = findRoute(roadGraph, place, parcel.address);
     }
     // create new "virtual" state so recursiveRobot's real state is unchanged
     let state = new VillageState(place, parcels);
